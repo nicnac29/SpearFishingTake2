@@ -11,7 +11,7 @@ public class Game implements Runnable
 		// TODO Auto-generated method stub
 		return player;
 	}
-	@Override
+	//@Override
 	public void run() 
 	{
 		long lastTime = System.currentTimeMillis();

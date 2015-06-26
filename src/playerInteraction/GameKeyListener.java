@@ -13,13 +13,13 @@ public class GameKeyListener implements KeyListener {
 		this.game = game;
 	}
 
-	@Override
+	//@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
+	//@Override
 	public void keyPressed(KeyEvent e) 
 	{
 		switch(e.getKeyCode())
@@ -39,7 +39,7 @@ public class GameKeyListener implements KeyListener {
 		}
 	}
 
-	@Override
+	//@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 		switch(e.getKeyCode())

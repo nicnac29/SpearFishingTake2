@@ -21,7 +21,7 @@ public GameFrame(Game g)
 	this.addKeyListener(new GameKeyListener(g));
 
 }
-@Override
+//@Override
 public void run() 
 {
 while(true)

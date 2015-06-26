@@ -16,7 +16,7 @@ public class GamePanel extends JPanel
 		this.game = g;
 		this.setBounds(0, 0, 1200, 500);
 	}	
-	@Override
+	//@Override
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
