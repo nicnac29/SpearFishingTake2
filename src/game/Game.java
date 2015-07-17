@@ -41,16 +41,17 @@ public class Game implements Runnable
 		player.tick();
 		count++;
 		if(count > 25)
-		{		
-			if(fish.size() < 1)
+		{	
+			int nextFish = r.nextInt(3);
+			if(nextFish == 0)
 			{
 				fish.add(new Fish("yt.png", r));
 			}
-			else if(fish.size() < 4)
+			else if(nextFish == 1)
 			{
 			fish.add(new Fish("bazz.png", r));
 			}
-			else if(fish.size() < 10)
+			else
 			{
 				fish.add(new Fish("zebraperch.png", r));
 			}
@@ -60,7 +61,16 @@ public class Game implements Runnable
 		for(int i =0; i < fish.size(); i++)
 		{
 			fish.get(i).tick();
-		}
+			//System.out.println("tipx: " + player.getTipX() + " tipy: " + player.getTipY());
+			Fish f = fish.get(i);
+			if((player.getTipX() >=  f.getX()) && (player.getTipX() <=  f.getTipX() ) &&
+					(player.getTipY() >=  f.getY()) && (player.getTipY() <=  f.getTipY() ))
+			{
+				System.out.println(fish.size());
+				fish.remove(i);
+			}
+		} 
+		
 	}
 	public void draw(Graphics g) {
 		
@@ -69,6 +79,7 @@ public class Game implements Runnable
 			fish.get(i).draw(g);
 		}
 		player.draw(g);
+		
 	}
 
 }

@@ -1,14 +1,17 @@
 package game;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.geom.Rectangle2D;
 import java.net.URL;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 
-public class Player 
+public class Player extends JComponent
 {
 	ImageIcon playerImage;
 	int x = 0 , y = 0, width = 100, height= 50;
@@ -18,6 +21,22 @@ public void draw(Graphics g)
 {
 	if(playerImage != null)
 	g.drawImage(playerImage.getImage(), x, y, width, height,null);
+}
+public int getX()
+{
+	return x;
+}
+public int getY()
+{
+	return y;
+}
+public int getTipX()
+{
+	return x + width;
+}
+public int getTipY()
+{
+	return y + height;
 }
 public void setUp(boolean b)
 {
@@ -53,6 +72,7 @@ if(right)
 {
 	x = x + speed;
 }
+
 }
 public Player()
 {

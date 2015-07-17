@@ -5,8 +5,9 @@ import java.net.URL;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 
-public class Fish {
+public class Fish extends JComponent{
 	ImageIcon fishImage;
 	int x = 900 , y = 0, width = 100, height= 50;
 	private boolean up = false, down = true, left = false, right = false;
@@ -49,6 +50,22 @@ public Fish(String fishname, Random r)
 		right = true;
 		left = false;
 	}
+}
+public int getX()
+{
+	return x;
+}
+public int getY()
+{
+	return y;
+}
+public int getTipX()
+{
+	return x + width;
+}
+public int getTipY()
+{
+	return y + height;
 }
 public void tick() 
 {
