@@ -15,13 +15,18 @@ public class Player extends JComponent
 {
 	ImageIcon playerImage;
 	int x = 0 , y = 0, width = 100, height= 50;
-	private boolean up = false, down = false, left = false, right = false;
+	public boolean up = false, down = false, left = false, right = false;
 	int speed= 10;
+	Game game;
 public void draw(Graphics g)
 {
 	if(playerImage != null)
+	{
 	g.drawImage(playerImage.getImage(), x, y, width, height,null);
+	}
+	
 }
+
 public int getX()
 {
 	return x;
@@ -41,6 +46,7 @@ public int getTipY()
 public void setUp(boolean b)
 {
 	up = b;
+	
 }
 public void setDown(boolean b)
 {
@@ -59,10 +65,12 @@ public void tick()
 if(up)
 {
 	y = y - speed;
+	game.addSpear();
 }
 if(down)
 {
 	y = y + speed;
+	
 }
 if(left)
 {
@@ -74,9 +82,10 @@ if(right)
 }
 
 }
-public Player()
+public Player(Game game)
 {
 	playerImage = loadImageFromComputer("spearo.jpg");
+	this.game = game;
 }
 public ImageIcon loadImageFromComputer(String fileName) 
 {

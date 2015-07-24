@@ -6,12 +6,14 @@ import java.util.Random;
 
 public class Game implements Runnable 
 {
+	int score = 0;
 	Player player;
+	ArrayList<Spear> spears = new ArrayList<Spear>();
 	ArrayList<Fish> fish = new ArrayList<Fish>();
 	Random r = new Random();
 	public void init()
 	{
-		player = new Player();
+		player = new Player(this);
 		
 		fish.add(new Fish("bazz.png", r));
 		fish.add(new Fish("zebraperch.png", r));
@@ -20,6 +22,10 @@ public class Game implements Runnable
 	public Player getPlayer() {
 		// TODO Auto-generated method stub
 		return player;
+	}
+	public void addSpear()
+	{
+		spears.add(new Spear(player));
 	}
 	//@Override
 	public void run() 
@@ -36,9 +42,31 @@ public class Game implements Runnable
 		}
 	}
 	int count = 0;
+	
+	
 	private void tick()
 	{
 		player.tick();
+		for (int i = 0; i < spears.size(); i++) {
+		Spear spear = spears.get(i);
+		spear.tick();
+			//System.out.println("tipx: " + player.getTipX() + " tipy: " + player.getTipY());
+		for(int j =0; j < fish.size(); j++)
+		{
+			Fish f = fish.get(j);
+			if((spear.getTipX() >=  f.getX()) && (spear.getTipX() <=  f.getTipX() ) &&
+					(spear.getTipY() >=  f.getY()) && (spear.getTipY() <=  f.getTipY() ))
+			{
+				//System.out.println(fish.size());
+				fish.remove(i);
+				score += 1;
+				System.out.println(score);
+			}
+			
+		}
+		for(int j =0; j < fish.size(); j++)
+		{
+			fish.get(j).tick();}
 		count++;
 		if(count > 25)
 		{	
@@ -58,17 +86,7 @@ public class Game implements Runnable
 
 			count = 0;
 		}
-		for(int i =0; i < fish.size(); i++)
-		{
-			fish.get(i).tick();
-			//System.out.println("tipx: " + player.getTipX() + " tipy: " + player.getTipY());
-			Fish f = fish.get(i);
-			if((player.getTipX() >=  f.getX()) && (player.getTipX() <=  f.getTipX() ) &&
-					(player.getTipY() >=  f.getY()) && (player.getTipY() <=  f.getTipY() ))
-			{
-				System.out.println(fish.size());
-				fish.remove(i);
-			}
+		
 		} 
 		
 	}
@@ -79,7 +97,10 @@ public class Game implements Runnable
 			fish.get(i).draw(g);
 		}
 		player.draw(g);
+		for (int i = 0; i < spears.size(); i++) {
 		
+		spears.get(i).draw(g);
+		}
 	}
 
 }

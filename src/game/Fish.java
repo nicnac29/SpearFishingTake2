@@ -19,7 +19,6 @@ public void draw(Graphics g)
 }
 public ImageIcon loadImageFromComputer(String fileName) 
 {
-	System.out.println("loading");
 	URL imageURL = getClass().getResource(fileName);
 	ImageIcon icon = new ImageIcon(imageURL);
 	return icon;
@@ -30,6 +29,7 @@ public Fish(String fishname, Random r)
 	fishImage = loadImageFromComputer(fishname);
 	this.y = r.nextInt(400);
 	this.x = r.nextInt(900);
+	
 	if(r.nextBoolean())
 	{
 		up = true;
