@@ -15,7 +15,7 @@ public class Player extends JComponent
 {
 	ImageIcon playerImage;
 	int x = 0 , y = 0, width = 100, height= 50;
-	public boolean up = false, down = false, left = false, right = false;
+	public boolean up = false, down = false, left = false, right = false, space = false;
 	int speed= 10;
 	Game game;
 public void draw(Graphics g)
@@ -60,13 +60,21 @@ public void setRight(boolean b)
 {
 	right = b;
 }
+public void setSpace(boolean b)
+{
+	space = b;
+}
 public void tick() 
 {
+	if(space)
+	{
+		game.addSpear();
+	}
 if(up)
 {
 	y = y - speed;
-	game.addSpear();
 }
+
 if(down)
 {
 	y = y + speed;

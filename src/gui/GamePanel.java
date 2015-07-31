@@ -21,5 +21,6 @@ public class GamePanel extends JPanel
 	{
 		super.paintComponent(g);
 		game.draw(g);
+		game.drawFish(g);
 	}
 }

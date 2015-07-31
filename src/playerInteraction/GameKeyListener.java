@@ -36,6 +36,9 @@ public class GameKeyListener implements KeyListener {
 		case KeyEvent.VK_RIGHT:
 			game.getPlayer().setRight(true);
 			break;
+		case KeyEvent.VK_SPACE:
+			game.getPlayer().setSpace(true);
+			break;
 		}
 	}
 
@@ -55,6 +58,9 @@ public class GameKeyListener implements KeyListener {
 			break;
 		case KeyEvent.VK_RIGHT:
 			game.getPlayer().setRight(false);
+			break;
+		case KeyEvent.VK_SPACE:
+			game.getPlayer().setSpace(false);
 			break;
 		}
 	}
