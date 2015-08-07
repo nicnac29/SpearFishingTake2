@@ -36,7 +36,16 @@ public class Spear {
 		this.x = player.x;
 		this.y = player.y;
 		spear = loadImageFromComputer("spear.png");
-		
+		if((!left && !right && !down && !up) )
+		{
+			right = true;
+			
+		}
+		if(left&& right)
+		{
+			left =false;
+			right = true;
+		}
 	}
 	public int getX()
 	{

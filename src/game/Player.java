@@ -70,6 +70,7 @@ public void tick()
 	{
 		game.addSpear();
 	}
+
 if(up)
 {
 	y = y - speed;
