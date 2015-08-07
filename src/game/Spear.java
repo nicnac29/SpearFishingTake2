@@ -35,7 +35,7 @@ public class Spear {
 		this.up = player.up;
 		this.x = player.x;
 		this.y = player.y;
-		spear = loadImageFromComputer("spear.jpg");
+		spear = loadImageFromComputer("spear.png");
 		
 	}
 	public int getX()

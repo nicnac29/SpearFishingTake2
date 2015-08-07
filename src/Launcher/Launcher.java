@@ -1,7 +1,9 @@
 package Launcher;
 
 import game.Game;
+import gui.FramePainter;
 import gui.GameFrame;
+import gui.GamePanel;
 
 public class Launcher 
 {
@@ -14,12 +16,13 @@ public static void main(String[] args)
 }
 private void init() 
 {
-	 g = new Game();
-	 g.init();
+	FramePainter gp = new FramePainter();
+	g = new Game(gp);
+
 	 gf = new GameFrame(g);
-	 Thread t1 = new Thread(g);
-	 t1.start();
-	 Thread t2 = new Thread(gf);
-	 t2.start();
+
+	gp.setGameFrame(gf);
+	 g.init();
+	 g.run();
 }
 }

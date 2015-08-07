@@ -1,5 +1,7 @@
 package game;
 
+import gui.FramePainter;
+
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Random;
@@ -10,6 +12,11 @@ public class Game implements Runnable {
 	ArrayList<Spear> spears = new ArrayList<Spear>();
 	ArrayList<Fish> fish = new ArrayList<Fish>();
 	Random r = new Random();
+	private FramePainter fp;
+	public Game(FramePainter gp) 
+	{
+		this.fp = gp;
+	}
 
 	public void init() {
 		player = new Player(this);
@@ -43,7 +50,8 @@ public class Game implements Runnable {
 	int count = 0;
 
 	private void tick() {
-		System.out.println(count);
+		//System.out.println(count);
+		//lolThisIsGreen
 		player.tick();
 		for (int i = 0; i < spears.size(); i++) {
 			Spear spear = spears.get(i);
@@ -58,13 +66,19 @@ public class Game implements Runnable {
 						&& (spear.getTipY() <= f.getTipY())) {
 					// System.out.println(fish.size());
 					fish.remove(j);
-					spears.remove(i);
+					try {
+						spears.remove(i);
+					}
+					catch(Exception e)
+					{
+						System.out.println("error!!!");
+					}
 					score += 1;
 				}
 
 			}
 			count++;
-			if (count > 500) {
+			if (count > 8000) {
 				int nextFish = r.nextInt(3);
 				if (nextFish == 0) {
 					fish.add(new Fish("yt.png", r));
@@ -81,7 +95,7 @@ public class Game implements Runnable {
 		for (int j = 0; j < fish.size(); j++) {
 			fish.get(j).tick();
 		}
-
+		fp.repaint();
 	}
 
 	public void draw(Graphics g) {
