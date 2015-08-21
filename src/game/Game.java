@@ -2,20 +2,43 @@ package game;
 
 import gui.FramePainter;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Game implements Runnable {
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
+import javax.swing.ImageIcon;
+
+public class Game implements Runnable, ActionListener {
 	int score = 0;
+	ImageIcon background;
+	String lajolla = "lajolla.jpg";
 	Player player;
 	ArrayList<Spear> spears = new ArrayList<Spear>();
 	ArrayList<Fish> fish = new ArrayList<Fish>();
 	Random r = new Random();
 	private FramePainter fp;
+	Timer t = new Timer(1000, this);
+	int timeCount = 0;
+	public ImageIcon loadImageFromComputer(String fileName) 
+	{
+		URL imageURL = getClass().getResource(fileName);
+		ImageIcon icon = new ImageIcon(imageURL);
+		return icon;
+		
+	}
 	public Game(FramePainter gp) 
 	{
 		this.fp = gp;
+		t.start();
+		background = loadImageFromComputer(lajolla);
 	}
 
 	public void init() {
@@ -39,19 +62,19 @@ public class Game implements Runnable {
 	public void run() {
 		long lastTime = System.currentTimeMillis();
 		long diff = 40;
-		while (true) {
+		while (timeCount < 60) {
 			if (lastTime + diff < System.currentTimeMillis()) {
 				tick();
 				lastTime = System.currentTimeMillis();
 			}
+			
 		}
+		JOptionPane.showInputDialog(score);
 	}
 
 	int count = 0;
 
 	private void tick() {
-		//System.out.println(count);
-		//lolThisIsGreen
 		player.tick();
 		for (int i = 0; i < spears.size(); i++) {
 			Spear spear = spears.get(i);
@@ -75,7 +98,7 @@ public class Game implements Runnable {
 					}
 					score += 1;
 				}
-
+				
 			}
 			count++;
 			if (count > 8000) {
@@ -99,12 +122,15 @@ public class Game implements Runnable {
 	}
 
 	public void draw(Graphics g) {
-
+		g.drawImage(background.getImage(), 0, 0, 1000, 500,null);		
 		player.draw(g);
+		g.setColor(Color.WHITE);
+		g.drawString("score: " + score , 10, 10);
+		g.drawString("time left: " + (60 - timeCount), 10, 20);
 		for (int i = 0; i < spears.size(); i++) {
-
 			spears.get(i).draw(g);
 		}
+		
 	}
 
 	public void drawFish(Graphics g) {
@@ -112,6 +138,9 @@ public class Game implements Runnable {
 		for (int i = 0; i < fish.size(); i++) {
 			fish.get(i).draw(g);
 		}
+	}
+	public void actionPerformed(ActionEvent e) {
+		timeCount++;
 	}
 
 }

@@ -74,22 +74,49 @@ public void tick()
 if(up)
 {
 	y = y - speed;
+	down = false;
 }
 
 if(down)
 {
 	y = y + speed;
-	
+	up = false;
 }
 if(left)
 {
 	x = x - speed;
+	right = false;
 }
 if(right)
 {
 	x = x + speed;
+	left = false;
 }
-
+if(y >= 400)
+{
+	up = true;
+	down = false;
+	
+}
+if(y <= 0)
+{
+	up = false;
+	down = true;
+	
+}
+if(x >= 900)
+{
+	left = true;
+	right = false;
+	
+}
+if(x<= 0)
+{
+	left = false;
+	right = true;
+	
+	
+}
 }
 public Player(Game game)
 {
