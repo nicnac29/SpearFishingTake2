@@ -10,4 +10,9 @@ public void repaint()
 {
 	frame.repaint();
 }
+public void closeFrame()
+{
+	frame.setVisible(false);
+	
+}
 }

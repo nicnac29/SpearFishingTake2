@@ -69,7 +69,23 @@ public class Game implements Runnable, ActionListener {
 			}
 			
 		}
-		JOptionPane.showInputDialog(score);
+		JOptionPane.showMessageDialog(null, "your score is" + score);
+		String replay = JOptionPane.showInputDialog("would you like to play again... yes or no");
+		if (replay.equals("yes"))
+		{
+			timeCount = 0;
+			score = 0;
+			count = 0;
+			fish.clear();
+			fish.add(new Fish("bazz.png", r));
+			fish.add(new Fish("zebraperch.png", r));
+			fish.add(new Fish("yt.png", r));
+			run();
+		} 
+		else if (replay.equals("no"))
+		{
+			fp.closeFrame();
+		}
 	}
 
 	int count = 0;
