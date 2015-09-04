@@ -27,17 +27,16 @@ public class Game implements Runnable, ActionListener {
 	private FramePainter fp;
 	Timer t = new Timer(1000, this);
 	int timeCount = 0;
-	public ImageIcon loadImageFromComputer(String fileName) 
-	{
+
+	public ImageIcon loadImageFromComputer(String fileName) {
 		URL imageURL = getClass().getResource(fileName);
 		ImageIcon icon = new ImageIcon(imageURL);
 		return icon;
-		
+
 	}
-	public Game(FramePainter gp) 
-	{
+
+	public Game(FramePainter gp) {
 		this.fp = gp;
-		t.start();
 		background = loadImageFromComputer(lajolla);
 	}
 
@@ -60,31 +59,38 @@ public class Game implements Runnable, ActionListener {
 
 	// @Override
 	public void run() {
-		long lastTime = System.currentTimeMillis();
-		long diff = 40;
-		while (timeCount < 60) {
-			if (lastTime + diff < System.currentTimeMillis()) {
-				tick();
-				lastTime = System.currentTimeMillis();
+		String deeznuts = JOptionPane
+				.showInputDialog("In this game you will be playing a thrilling "
+						+ "spearfishing expirience of a lifetime... to play this game one only need to "
+						+ "use the arrow keys to move, and the space bar to shoot spears...");
+		if (!deeznuts.equals("In this game you will be playing a thrilling "
+						+ "spearfishing expirience of a lifetime... to play this game one only need to "
+						+ "use the arrow keys to move, and the space bar to shoot spears...")) {
+			t.start();
+			long lastTime = System.currentTimeMillis();
+			long diff = 40;
+			while (timeCount < 60) {
+				if (lastTime + diff < System.currentTimeMillis()) {
+					tick();
+					lastTime = System.currentTimeMillis();
+				}
+
 			}
-			
-		}
-		JOptionPane.showMessageDialog(null, "your score is" + score);
-		String replay = JOptionPane.showInputDialog("would you like to play again... yes or no");
-		if (replay.equals("yes"))
-		{
-			timeCount = 0;
-			score = 0;
-			count = 0;
-			fish.clear();
-			fish.add(new Fish("bazz.png", r));
-			fish.add(new Fish("zebraperch.png", r));
-			fish.add(new Fish("yt.png", r));
-			run();
-		} 
-		else 
-		{
-			fp.closeFrame();
+			JOptionPane.showMessageDialog(null, "your score is" + score);
+			String replay = JOptionPane
+					.showInputDialog("would you like to play again... yes or no");
+			if (replay.equals("yes")) {
+				timeCount = 0;
+				score = 0;
+				count = 0;
+				fish.clear();
+				fish.add(new Fish("bazz.png", r));
+				fish.add(new Fish("zebraperch.png", r));
+				fish.add(new Fish("yt.png", r));
+				run();
+			} else {
+				fp.closeFrame();
+			}
 		}
 	}
 
@@ -107,14 +113,12 @@ public class Game implements Runnable, ActionListener {
 					fish.remove(j);
 					try {
 						spears.remove(i);
-					}
-					catch(Exception e)
-					{
+					} catch (Exception e) {
 						System.out.println("error!!!");
 					}
 					score += 1;
 				}
-				
+
 			}
 			count++;
 			if (count > 8000) {
@@ -138,23 +142,24 @@ public class Game implements Runnable, ActionListener {
 	}
 
 	public void draw(Graphics g) {
-		g.drawImage(background.getImage(), 0, 0, 1000, 500,null);		
+		g.drawImage(background.getImage(), 0, 0, 1000, 500, null);
 		player.draw(g);
 		g.setColor(Color.WHITE);
-		g.drawString("score: " + score , 10, 10);
+		g.drawString("score: " + score, 10, 10);
 		g.drawString("time left: " + (60 - timeCount), 10, 20);
 		for (int i = 0; i < spears.size(); i++) {
 			spears.get(i).draw(g);
 		}
-		
+
 	}
 
 	public void drawFish(Graphics g) {
-		
+
 		for (int i = 0; i < fish.size(); i++) {
 			fish.get(i).draw(g);
 		}
 	}
+
 	public void actionPerformed(ActionEvent e) {
 		timeCount++;
 	}

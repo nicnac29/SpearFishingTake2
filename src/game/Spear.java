@@ -88,7 +88,7 @@ public class Spear {
 	
 	public ImageIcon loadImageFromComputer(String fileName) 
 	{
-		System.out.println("loading");
+		//System.out.println("loading");
 		URL imageURL = getClass().getResource(fileName);
 		ImageIcon icon = new ImageIcon(imageURL);
 		return icon;
