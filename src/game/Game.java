@@ -82,7 +82,7 @@ public class Game implements Runnable, ActionListener {
 			fish.add(new Fish("yt.png", r));
 			run();
 		} 
-		else if (replay.equals("no"))
+		else 
 		{
 			fp.closeFrame();
 		}
