@@ -60,12 +60,8 @@ public class Game implements Runnable, ActionListener {
 	// @Override
 	public void run() {
 		String deeznuts = JOptionPane
-				.showInputDialog("In this game you will be playing a thrilling "
-						+ "spearfishing expirience of a lifetime... to play this game one only need to "
-						+ "use the arrow keys to move, and the space bar to shoot spears...");
-		if (!deeznuts.equals("In this game you will be playing a thrilling "
-						+ "spearfishing expirience of a lifetime... to play this game one only need to "
-						+ "use the arrow keys to move, and the space bar to shoot spears...")) {
+				.showInputDialog("use the arrow keys to move, to shoot spears use the space bar and move in any direction, you have 60 seconds to shoot as many fish as possable... good luck");
+		if (!deeznuts.equals("oyoyyyoyyoyyyyyyyoyoyoyoyoyoyoyyyyyoyoy")) {
 			t.start();
 			long lastTime = System.currentTimeMillis();
 			long diff = 40;
@@ -76,7 +72,7 @@ public class Game implements Runnable, ActionListener {
 				}
 
 			}
-			JOptionPane.showMessageDialog(null, "your score is" + score);
+			JOptionPane.showMessageDialog(null, "your score is " + score);
 			String replay = JOptionPane
 					.showInputDialog("would you like to play again... yes or no");
 			if (replay.equals("yes")) {
@@ -114,9 +110,22 @@ public class Game implements Runnable, ActionListener {
 					try {
 						spears.remove(i);
 					} catch (Exception e) {
-						System.out.println("error!!!");
+						//System.out.println("error!!!");
 					}
 					score += 1;
+					count++;
+					if (count > 8000) {
+						int nextFish = r.nextInt(3);
+						if (nextFish == 0) {
+							fish.add(new Fish("yt.png", r));
+						} else if (nextFish == 1) {
+							fish.add(new Fish("bazz.png", r));
+						} else {
+							fish.add(new Fish("zebraperch.png", r));
+						}
+
+						count = 0;
+					}
 				}
 
 			}

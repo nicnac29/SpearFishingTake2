@@ -1,5 +1,6 @@
 package game;
 
+import java.applet.AudioClip;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -8,6 +9,7 @@ import java.net.URL;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JApplet;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 
@@ -69,6 +71,8 @@ public void tick()
 	if(space)
 	{
 		game.addSpear();
+		AudioClip sound = JApplet.newAudioClip(getClass().getResource("54__anton__bow-sound.wav"));
+		sound.play();
 	}
 
 if(up)

@@ -8,22 +8,25 @@ import java.awt.event.KeyListener;
 public class GameKeyListener implements KeyListener {
 
 	Game game;
-	public GameKeyListener(Game game) 
-	{
+
+	public GameKeyListener(Game game) {
 		this.game = game;
 	}
 
-	//@Override
+	// @Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-
+		System.out.println(e.getKeyCode());
+		switch (e.getKeyCode()) {
+		case KeyEvent.VK_SPACE:
+			game.getPlayer().setSpace(false);
+			break;
+		}
 	}
 
-	//@Override
-	public void keyPressed(KeyEvent e) 
-	{
-		switch(e.getKeyCode())
-		{
+	// @Override
+	public void keyPressed(KeyEvent e) {
+		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP:
 			game.getPlayer().setUp(true);
 			break;
@@ -37,16 +40,17 @@ public class GameKeyListener implements KeyListener {
 			game.getPlayer().setRight(true);
 			break;
 		case KeyEvent.VK_SPACE:
+			System.out.println("space pressed!!!");
 			game.getPlayer().setSpace(true);
 			break;
+
 		}
 	}
 
-	//@Override
+	// @Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		switch(e.getKeyCode())
-		{
+		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP:
 			game.getPlayer().setUp(false);
 			break;
@@ -60,6 +64,7 @@ public class GameKeyListener implements KeyListener {
 			game.getPlayer().setRight(false);
 			break;
 		case KeyEvent.VK_SPACE:
+			System.out.println("space released!!!");
 			game.getPlayer().setSpace(false);
 			break;
 		}
