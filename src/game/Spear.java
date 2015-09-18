@@ -18,7 +18,7 @@ public class Spear {
 		
 		int x = 0 , y = 0, width = 100, height= 50;
 		private boolean up = false, down = false, left = false, right = false;
-		int speed= 20 ;
+		int speed = 15 ;
 	public void draw(Graphics g)
 	{
 		if(spear != null)
@@ -83,7 +83,6 @@ public class Spear {
 	{
 		x = x + speed;
 	}
-
 	}
 	
 	public ImageIcon loadImageFromComputer(String fileName) 

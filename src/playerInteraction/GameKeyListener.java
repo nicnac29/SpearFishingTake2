@@ -40,10 +40,22 @@ public class GameKeyListener implements KeyListener {
 			game.getPlayer().setRight(true);
 			break;
 		case KeyEvent.VK_SPACE:
-			System.out.println("space pressed!!!");
+			//System.out.println("space pressed!!!");
 			game.getPlayer().setSpace(true);
 			break;
-
+		case KeyEvent.VK_W:
+			game.getPlayer().setUp(true);
+			break;
+		case KeyEvent.VK_A:
+			game.getPlayer().setLeft(true);
+			break;
+		case KeyEvent.VK_D:
+			game.getPlayer().setRight(true);
+			break;
+		case KeyEvent.VK_S:
+			game.getPlayer().setDown(true);
+			break;
+			
 		}
 	}
 
@@ -64,8 +76,20 @@ public class GameKeyListener implements KeyListener {
 			game.getPlayer().setRight(false);
 			break;
 		case KeyEvent.VK_SPACE:
-			System.out.println("space released!!!");
+			//System.out.println("space released!!!");
 			game.getPlayer().setSpace(false);
+			break;
+		case KeyEvent.VK_W:
+			game.getPlayer().setUp(false);
+			break;
+		case KeyEvent.VK_S:
+			game.getPlayer().setDown(false);
+			break;
+		case KeyEvent.VK_A:
+			game.getPlayer().setLeft(false);
+			break;
+		case KeyEvent.VK_D:
+			game.getPlayer().setRight(false);
 			break;
 		}
 	}

@@ -60,7 +60,7 @@ public class Game implements Runnable, ActionListener {
 	// @Override
 	public void run() {
 		String deeznuts = JOptionPane
-				.showInputDialog("use the arrow keys to move, to shoot spears use the space bar and move in any direction, you have 60 seconds to shoot as many fish as possable... good luck");
+				.showInputDialog("use the arrow keys to move, to shoot spears use the space bar and move in any direction, you have 60 seconds, the more spears you shoot the more fish apear... good luck");
 		if (!deeznuts.equals("oyoyyyoyyoyyyyyyyoyoyoyoyoyoyoyyyyyoyoy")) {
 			t.start();
 			long lastTime = System.currentTimeMillis();
@@ -69,6 +69,7 @@ public class Game implements Runnable, ActionListener {
 				if (lastTime + diff < System.currentTimeMillis()) {
 					tick();
 					lastTime = System.currentTimeMillis();
+					
 				}
 
 			}
@@ -114,7 +115,7 @@ public class Game implements Runnable, ActionListener {
 					}
 					score += 1;
 					count++;
-					if (count > 8000) {
+					if (count > 600) {
 						int nextFish = r.nextInt(3);
 						if (nextFish == 0) {
 							fish.add(new Fish("yt.png", r));
@@ -130,7 +131,7 @@ public class Game implements Runnable, ActionListener {
 
 			}
 			count++;
-			if (count > 8000) {
+			if (count > 2000) {
 				int nextFish = r.nextInt(3);
 				if (nextFish == 0) {
 					fish.add(new Fish("yt.png", r));

@@ -15,9 +15,10 @@ import javax.swing.JLabel;
 
 public class Player extends JComponent
 {
+	AudioClip sound = JApplet.newAudioClip(getClass().getResource("54__anton__bow-sound.wav"));
 	ImageIcon playerImage;
 	int x = 0 , y = 0, width = 100, height= 50;
-	public boolean up = false, down = false, left = false, right = false, space = false;
+	public boolean up = false, down = false, left = false, right = false, space = false, W = false, A = false, S = false, D = false;
 	int speed= 10;
 	Game game;
 public void draw(Graphics g)
@@ -66,12 +67,28 @@ public void setSpace(boolean b)
 {
 	space = b;
 }
+public void setW(boolean b)
+{
+	W = b;
+}
+public void setA(boolean b)
+{
+	A = b;
+}
+public void setS(boolean b)
+{
+	S = b;
+}
+public void setD(boolean b)
+{
+	D = b;
+}
+
 public void tick() 
 {
 	if(space)
 	{
 		game.addSpear();
-		AudioClip sound = JApplet.newAudioClip(getClass().getResource("54__anton__bow-sound.wav"));
 		sound.play();
 	}
 
@@ -95,6 +112,27 @@ if(right)
 {
 	x = x + speed;
 	left = false;
+}
+if(W)
+{
+	y = y - speed;
+	S = false;
+}
+
+if(S)
+{
+	y = y + speed;
+	W = false;
+}
+if(A)
+{
+	x = x - speed;
+	D = false;
+}
+if(D)
+{
+	x = x + speed;
+	A = false;
 }
 if(y >= 400)
 {
@@ -124,7 +162,7 @@ if(x<= 0)
 }
 public Player(Game game)
 {
-	playerImage = loadImageFromComputer("spearo.jpg");
+	playerImage = loadImageFromComputer("spearo.png");
 	this.game = game;
 }
 public ImageIcon loadImageFromComputer(String fileName) 
