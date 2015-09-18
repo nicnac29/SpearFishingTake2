@@ -54,6 +54,8 @@ public class Game implements Runnable, ActionListener {
 	}
 
 	public void addSpear() {
+		System.out.println("spears: " + spears.size());
+		//TODO: don't add a new spear unless the last one has left the screen
 		spears.add(new Spear(player));
 	}
 
@@ -69,13 +71,12 @@ public class Game implements Runnable, ActionListener {
 				if (lastTime + diff < System.currentTimeMillis()) {
 					tick();
 					lastTime = System.currentTimeMillis();
-					
+
 				}
 
 			}
 			JOptionPane.showMessageDialog(null, "your score is " + score);
-			String replay = JOptionPane
-					.showInputDialog("would you like to play again... yes or no");
+			String replay = JOptionPane.showInputDialog("would you like to play again... yes or no");
 			if (replay.equals("yes")) {
 				timeCount = 0;
 				score = 0;
@@ -98,20 +99,19 @@ public class Game implements Runnable, ActionListener {
 		for (int i = 0; i < spears.size(); i++) {
 			Spear spear = spears.get(i);
 			spear.tick();
+			removeSpearIfOffScreen(spear);
 			// System.out.println("tipx: " + player.getTipX() + " tipy: " +
 			// player.getTipY());
 			for (int j = 0; j < fish.size(); j++) {
 				Fish f = fish.get(j);
-				if ((spear.getTipX() >= f.getX())
-						&& (spear.getTipX() <= f.getTipX())
-						&& (spear.getTipY() >= f.getY())
+				if ((spear.getTipX() >= f.getX()) && (spear.getTipX() <= f.getTipX()) && (spear.getTipY() >= f.getY())
 						&& (spear.getTipY() <= f.getTipY())) {
 					// System.out.println(fish.size());
 					fish.remove(j);
 					try {
 						spears.remove(i);
 					} catch (Exception e) {
-						//System.out.println("error!!!");
+						// System.out.println("error!!!");
 					}
 					score += 1;
 					count++;
@@ -149,6 +149,17 @@ public class Game implements Runnable, ActionListener {
 			fish.get(j).tick();
 		}
 		fp.repaint();
+	}
+
+	private void removeSpearIfOffScreen(Spear spear) {
+		if (spear.getTipX() > background.getIconWidth()) { // TODO: this needs to be fixed
+			spears.remove(spear);
+			System.out.println("removed spear.");
+		}
+		/*
+		 * TODO: Add logic for checking if the spear goes off the edge of the screen if so, remove the spear.
+		 */
+
 	}
 
 	public void draw(Graphics g) {
