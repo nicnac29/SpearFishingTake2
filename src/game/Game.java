@@ -94,7 +94,7 @@ public class Game implements Runnable, ActionListener {
 
 	int count = 0;
 
-	private void tick() {
+	private void tick() { 
 		player.tick();
 		for (int i = 0; i < spears.size(); i++) {
 			Spear spear = spears.get(i);
@@ -167,7 +167,8 @@ public class Game implements Runnable, ActionListener {
 		player.draw(g);
 		g.setColor(Color.WHITE);
 		g.drawString("score: " + score, 10, 10);
-		g.drawString("time left: " + (60 - timeCount), 10, 20);
+		g.drawString("time left: " + (60 - timeCount), 10, 22);
+		g.drawString("highscore: 148", 10, 34);
 		for (int i = 0; i < spears.size(); i++) {
 			spears.get(i).draw(g);
 		}

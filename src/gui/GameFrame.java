@@ -12,7 +12,7 @@ public class GameFrame extends JFrame implements Runnable
 public GameFrame(Game g)
 {
 	super();
-	this.setBounds(0,0,1000,500);
+	this.setBounds(0,0,975,500);
 	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	this.setVisible(true);
 	this.setResizable(false);
