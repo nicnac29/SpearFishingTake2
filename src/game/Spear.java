@@ -16,7 +16,7 @@ public class Spear {
 	ImageIcon spear;
 
 	int x = 0, y = 0, width = 100, height = 50;
-	private boolean up = false, down = false, left = false, right = false;
+	private boolean up = false, down = false, left = false, right = false, W = false, A = false, S = false, D = false;
 	int speed = 15;
 
 	public void draw(Graphics g) {
@@ -31,16 +31,22 @@ public class Spear {
 		this.right = player.right;
 		this.down = player.down;
 		this.up = player.up;
+		this.W = player.up;
+		this.A = player.left;
+		this.S = player.down;
+		this.D = player.right;
 		this.x = player.x;
 		this.y = player.y;
 		spear = loadImageFromComputer("spear.png");
-		if ((!left && !right && !down && !up)) {
+		if ((!left && !right && !down && !up && !W && !A && !S && !D)) {
 			right = true;
-
+			D = true;
 		}
-		if (left && right) {
+		if (left && right && A && D) {
 			left = false;
 			right = true;
+			A = true;
+			D = true;
 		}
 	}
 
@@ -73,6 +79,20 @@ public class Spear {
 			x = x - speed;
 		}
 		if (right) {
+			x = x + speed;
+		}
+		if (W) {
+			y = y - speed;
+
+		}
+		if (S) {
+			y = y + speed;
+
+		}
+		if (A) {
+			x = x - speed;
+		}
+		if (D) {
 			x = x + speed;
 		}
 	}
