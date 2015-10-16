@@ -75,7 +75,7 @@ public class Game implements Runnable, ActionListener {
 				}
 
 			}
-			JOptionPane.showMessageDialog(null, "your score is " + score);
+			JOptionPane.showMessageDialog(null, "your score is " + score + "    The High score is 170");
 			String replay = JOptionPane.showInputDialog("would you like to play again... yes or no");
 			if (replay.equals("yes")) {
 				timeCount = 0;
@@ -131,7 +131,7 @@ public class Game implements Runnable, ActionListener {
 
 			}
 			count++;
-			if (count > 2000) {
+			if (count > 800) {
 				int nextFish = r.nextInt(3);
 				if (nextFish == 0) {
 					fish.add(new Fish("yt.png", r));
@@ -168,7 +168,7 @@ public class Game implements Runnable, ActionListener {
 		g.setColor(Color.WHITE);
 		g.drawString("score: " + score, 10, 10);
 		g.drawString("time left: " + (60 - timeCount), 10, 22);
-		g.drawString("highscore: 148", 10, 34);
+		g.drawString("highscore: 170", 10, 34);
 		for (int i = 0; i < spears.size(); i++) {
 			spears.get(i).draw(g);
 		}
