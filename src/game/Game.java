@@ -65,7 +65,7 @@ public class Game implements Runnable, ActionListener {
 	// @Override
 	public void run() {
 		String deeznuts = JOptionPane
-				.showInputDialog("use the arrow keys to move, to shoot spears use the space bar and move in any direction, you have 60 seconds, the more spears you shoot the more fish apear... good luck");
+				.showInputDialog("READ THE DIRECTIONS CAREFULLY!!! use the arrow keys to move, shoot spears useing the space bar, you have 60 seconds, the more spears you shoot the more fish apear. good luck");
 		if (!deeznuts.equals("oyoyyyoyyoyyyyyyyoyoyoyoyoyoyoyyyyyoyoy")) {
 			t.start();
 			sound1.play();
