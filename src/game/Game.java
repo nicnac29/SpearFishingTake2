@@ -2,6 +2,7 @@ package game;
 
 import gui.FramePainter;
 
+import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -12,6 +13,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JApplet;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.ImageIcon;
@@ -20,6 +22,8 @@ public class Game implements Runnable, ActionListener {
 	int score = 0;
 	ImageIcon background;
 	String lajolla = "lajolla.jpg";
+	AudioClip sound1 = JApplet.newAudioClip(getClass().getResource("137074__lance-blomgren__musical-bubbles.wav"));
+	AudioClip sound2 = JApplet.newAudioClip(getClass().getResource("245807__markb258__dead-bird.wav"));
 	Player player;
 	ArrayList<Spear> spears = new ArrayList<Spear>();
 	ArrayList<Fish> fish = new ArrayList<Fish>();
@@ -42,7 +46,6 @@ public class Game implements Runnable, ActionListener {
 
 	public void init() {
 		player = new Player(this);
-
 		fish.add(new Fish("bazz.png", r));
 		fish.add(new Fish("zebraperch.png", r));
 		fish.add(new Fish("yt.png", r));
@@ -65,6 +68,7 @@ public class Game implements Runnable, ActionListener {
 				.showInputDialog("use the arrow keys to move, to shoot spears use the space bar and move in any direction, you have 60 seconds, the more spears you shoot the more fish apear... good luck");
 		if (!deeznuts.equals("oyoyyyoyyoyyyyyyyoyoyoyoyoyoyoyyyyyoyoy")) {
 			t.start();
+			sound1.play();
 			long lastTime = System.currentTimeMillis();
 			long diff = 40;
 			while (timeCount < 60) {
@@ -108,6 +112,7 @@ public class Game implements Runnable, ActionListener {
 						&& (spear.getTipY() <= f.getTipY())) {
 					// System.out.println(fish.size());
 					fish.remove(j);
+					sound2.play();
 					try {
 						spears.remove(i);
 					} catch (Exception e) {
