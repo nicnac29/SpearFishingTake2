@@ -79,7 +79,7 @@ public class Game implements Runnable, ActionListener {
 				}
 
 			}
-			JOptionPane.showMessageDialog(null, "your score is " + score + "    The High score is 170");
+			JOptionPane.showMessageDialog(null, "your score is " + score + "    The High score is 284");
 			String replay = JOptionPane.showInputDialog("would you like to play again... yes or no");
 			if (replay.equals("yes")) {
 				timeCount = 0;
@@ -173,7 +173,7 @@ public class Game implements Runnable, ActionListener {
 		g.setColor(Color.WHITE);
 		g.drawString("score: " + score, 10, 10);
 		g.drawString("time left: " + (60 - timeCount), 10, 22);
-		g.drawString("highscore: 170", 10, 34);
+		g.drawString("highscore: 284", 10, 34);
 		for (int i = 0; i < spears.size(); i++) {
 			spears.get(i).draw(g);
 		}
